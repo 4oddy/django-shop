@@ -1,0 +1,4 @@
+# Включить
+celery -A store worker -l INFO
+# Выключить
+Crt+C

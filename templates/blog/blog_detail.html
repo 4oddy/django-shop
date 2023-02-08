@@ -1,0 +1,80 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static '/vendor/css/index.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'vendor/css/style.css' %}" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+
+<body>
+	<div class="shell">
+		<div class="border">
+			<div id="main">
+				<div id="content" class="left">
+					<div class="projects">
+						<h3>{{ blog.title }}</h3>
+					<p align="center">
+						<img src="{{ blog.img.url }}" width="50%" alt="" /></a>
+					</p>
+						<div class="item">
+								<div class="text left">
+									<p>{{ blog.description }}</p>
+							</div>
+							<div class="cl">&nbsp;</div>
+					</div>
+					</div>
+				</div>
+			</div>
+				<div class="cl">&nbsp;</div>
+			<div>
+				<div>
+					<h6>Комментарии</h6>
+				</div>
+				{% for comment in blog.comments_set.all %}
+				<div class="view-comment">
+					<h8>Имя:</h8> <h6>{{ comment.name }}</h6>
+					<p>
+						<h8>Комментарии:</h8> <h6>{{ comment.text_comments }}</h6>
+					</p>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="form-comment">
+				<h6>Оставить Комментарии</h6>
+				<div>
+					<form action="{% url 'blog:add_comments' blog.id %}" method="post">
+					{% csrf_token %}
+						<div>
+							<label>Ваш комментарий</label>
+							<textarea name="text_comments"></textarea>
+						</div>
+						<div>
+							<label>Ваше Имя *</label>
+							<input type="text" name="name">
+						</div>
+						<div>
+							<label>Ваше Email *</label>
+							<input type="email" name="email">
+						</div>
+						<div>
+							<input type="submit">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+{% endblock %}
+
+{% block footer %}
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">ПродажаШин96.рф &copy; Store 2022</p>
+		</div>
+	</footer>
+{% endblock %}

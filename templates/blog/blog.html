@@ -1,0 +1,43 @@
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static '/vendor/css/index.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'vendor/css/style.css' %}" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+	{% for blog in blog_list %}
+<body>
+	<div class="shell">
+		<div class="border">
+			<div id="main">
+				<div id="content" class="left">
+					<div class="item">
+						<div class="image left">
+							<a href="#"><img src="{{ blog.img.url }}" width="200" alt="" /></a>
+						</div>
+							<div class="text left">
+								<h4>
+									<a href="{{ blog.id }}">{{ blog.title }}</a>
+								</h4>
+								<p>{{ blog.description }}</p>
+						</div>
+						<div class="cl">&nbsp;</div>
+					</div>
+				</div>
+			</div>
+				<div class="cl">&nbsp;</div>
+		</div>
+	</div>
+</body>
+	{% endfor %}
+{% endblock %}
+
+{% block footer %}
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">ПродажаШин96.рф &copy; Store 2022</p>
+		</div>
+	</footer>
+{% endblock %}
